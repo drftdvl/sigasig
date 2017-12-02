@@ -13,6 +13,7 @@
         <th>First Name</th>
         <th>Type</th>
         <th>Status</th>
+        <th>License Expiry Date</th>
         <th colspan=3>Actions</th>
       </tr>
     </thead>
@@ -24,6 +25,7 @@
           <td><%= mainfile.given_name %></td>
           <td><%= mainfile.emp_type.desc %></td>
           <td><%= mainfile.emp_status.desc %></td>
+          <td><%= mainfile.guard_ext_file.expiry_date %></td>
           <td><%= link_to 'View', main_file_path(mainfile), class: "btn btn-default" %></td>
           <td><%= link_to 'Edit', edit_main_file_path(mainfile), class: "btn btn-warning" %></td>
           <td><%= link_to 'Delete', main_file_path(mainfile), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %></td>
