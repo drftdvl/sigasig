@@ -1,0 +1,32 @@
+development:
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  database: sigasig_development
+  pool: 5
+  host: localhost
+  username: root
+  password: 123456
+  #socket: /tmp/mysql.sock
+  socket: /Applications/rubystack-2.2.6-0/mysql/tmp/mysql.sock
+test:
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  #database: sigasig_test
+  pool: 5
+  username: root
+  password: 123456
+  #socket: /tmp/mysql.sock
+  socket: /Applications/rubystack-2.2.6-0/mysql/tmp/mysql.sock
+
+production:
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  database: sigiasig_production
+  pool: 5
+  username: root
+  password: 123456
+  #socket: /tmp/mysql.sock
+  socket: /Applications/rubystack-2.2.6-0/mysql/tmp/mysql.sock

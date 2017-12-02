@@ -1,0 +1,19 @@
+ <fieldset>
+</br>
+	<div class="well">
+		<%= link_to_remove_association "Remove", f, :class => "btn btn-danger" %>
+		</br>
+		<div class="row">
+			<div class="col-md-6">
+				<%= f.input :house_number, label: 'House Number' %></br>
+				<%= f.input :street, label: 'Street' %></br>
+				<%= f.input :dtc, label: 'District/Town/City' %></br>
+			</div>
+			<div class="col-md-6">
+				<%= f.input :province, label: 'Province' %></br>
+				<%= f.input :start_date, label: 'Start Date' %></br>
+				<%= f.input :end_date, label: 'End Date' %></br>
+			</div>
+		</div>
+	</div>
+</fieldset>

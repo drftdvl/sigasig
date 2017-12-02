@@ -1,0 +1,415 @@
+<%= link_to 'Back', main_files_path, :class => "btn btn-default hidden-print" %>
+<%= link_to 'Edit', edit_main_file_path(@mainfile), class: "btn btn-warning hidden-print" %>
+<%= link_to 'Delete', @mainfile, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger hidden-print" %>
+<% if current_user.admin? %>
+<div class="row">
+	<div class="col-xs-6">
+		<h2><strong>SIGASIG SECURITY SERVICES, INC.</strong></h2>
+		<p>Room 308, Topaz Bldg., 99-101 Kamias Road, Quezon City</p>
+		<p>Telephone Numbers: 355-0439/355-7254 (Telefax)</p>
+	</div>
+	<div class="col-xs-6">
+		<table class="table table-borderless table-condensed table-hover">
+			<tbody>
+				<tr>
+					<td><strong>Job Position Applied for</strong></td>
+					<td><%= @mainfile.job_position %></td>
+				</tr>
+				<tr>
+					<td><strong>Security License Number</strong></td>
+					<td><%= @mainfile.guard_ext_file.security_license_number %></td>
+				</tr>
+				<tr>
+					<td><strong>Badge Number</strong></td>
+					<td><%= @mainfile.guard_ext_file.badge_number %></td>
+				</tr>
+				<tr>
+					<td><strong>License Expiry Date</strong></td>
+					<td><%= @mainfile.guard_ext_file.expiry_date %></td>
+				</tr>
+				<tr>
+					<td><strong>SSS Number</strong></td>
+					<td><%= @mainfile.sss_number %></td>
+				</tr>
+				<tr>
+					<td><strong>TIN Number</strong></td>
+					<td><%= @mainfile.tin_number %></td>
+				</tr>
+				<tr>
+					<td><strong>PhilHealth Number</strong></td>
+					<td><%= @mainfile.philhealth %></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+</br>
+<div class="row">
+	<div class="col-xs-4">
+		<%= image_tag @mainfile.picture.url(:medium)%>
+	</div>
+	<div class="col-xs-8">
+		<p><strong>PERSONAL DATA</strong></p>
+		<div class="row">
+			<div class="col-xs-6">
+				<p><%= @mainfile.family_name %></p>
+				<p><strong>Family Name</strong></p>
+			</div>
+			<div class="col-xs-6">
+				<p><%= @mainfile.created_at.strftime('%Y-%m-%d') %></p>
+				<p><strong>Date Filed</strong></p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-4">
+				<p><%= @mainfile.given_name %></p>
+				<p><strong>Given Name</strong></p>
+			</div>
+			<div class="col-xs-4">
+				<p><%= @mainfile.middle_name %></p>
+				<p><strong>Middle Name</strong></p>
+			</div>
+			<div class="col-xs-4">
+				<p><%= @mainfile.hire_date %></p>
+				<p><strong>Date Employed/Re-employed</strong></p>
+			</div>
+		</div>
+	</div>
+</div>
+</br>
+<table class="table table-borderless table-condensed table-hover">
+	<tbody>
+		<tr>
+			<td><strong>Sex</strong></td><td><%= @mainfile.sex %></td>
+			<td><strong>Age</strong></td><td><%= age(@mainfile.birth_date) %></td>
+		</tr>
+		<tr>
+			<td><strong>Date of Birth</strong></td><td><%= @mainfile.birth_date %></td>
+			<td><strong>Height</strong></td><td><%= @mainfile.height_ft %>'<%= @mainfile.height_in%>"</td>
+		</tr>
+		<tr>
+			<td><strong>Place of Birth</strong></td><td><%= @mainfile.birth_place %></td>
+			<td><strong>Weight</strong></td><td><%= @mainfile.weight%> lbs</td>
+		</tr>
+		<tr>
+			<td><strong>Job Skills</strong></td><td><%= @mainfile.job_skills %></td>
+			<td><strong>Blood Type</strong></td><td><%= @mainfile.blood_type %></td>
+		</tr>
+		<tr>
+			<td><strong>Hobbies</strong></td><td><%= @mainfile.hobbies %></td>
+			<td><strong>Citizenship</strong></td><td><%= @mainfile.citizenship %></td>
+		</tr>
+		<tr>
+			<td><strong>Birthmarks</strong></td><td><%= @mainfile.birth_marks %></td>
+			<td><strong>Color of Hair</strong></td><td><%= @mainfile.hair_color %></td>
+		</tr>
+		<tr>
+			<td><strong>Dialects/Languages Spoken</strong></td><td><%= @mainfile.language %></td>
+			<td><strong>Religion</strong></td><td><%= @mainfile.religion %></td>
+		</tr>
+		<tr>
+			<td><strong>City Address</strong></td><td><%= @mainfile.city_address1 %></br><%= @mainfile.city_address2 %></td>
+			<td><strong>Civil Status</strong></td><td><%= @mainfile.mar_status.desc %></td>
+		</tr>
+		<tr>
+			<td><strong>Provincial Address</strong></td><td><%= @mainfile.prov_address1 %></br><%= @mainfile.prov_address2 %></td>
+		</tr>
+	</tbody>
+</table>
+</br>
+
+<p><strong>SPOUSES (may be more than one)</strong></p>
+<table class="table">
+	<thead>
+		<tr>
+			<th>Last Name</th>
+			<th>First Name</th>
+			<th>Middle Name</th>
+			<th>City Address</th>
+			<th>Provincial Address</th>
+			<th>Age</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @mainfile.spouses.each do |spouse| %> 
+		<tr>	
+		    	<td><%= spouse.last_name %></td>
+		    	<td><%= spouse.first_name %></td>
+		    	<td><%= spouse.middle_name %></td>
+		    	<td><%= spouse.city_address1 %></br><%= spouse.city_address2 %></td>
+		    	<td><%= spouse.prov_address1 %></br><%= spouse.prov_address2 %></td>
+		    	<td><%= age(spouse.birth_date) %></td>		    
+		</tr>
+		<% end %>
+	</tbody>
+</table>
+</br>
+
+<p><strong>DEPENDENTS</strong></p>
+<table class="table">
+	<thead>
+		<tr>
+			<th>Last Name</th>
+			<th>First Name</th>
+			<th>Middle Name</th>
+			<th>City Address</th>
+			<th>Provincial Address</th>
+			<th>Age</th>
+			<th>Relationship</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @mainfile.dependents.each do |dependent| %> 
+		<tr>	
+		    	<td><%= dependent.last_name %></td>
+		    	<td><%= dependent.first_name %></td>
+		    	<td><%= dependent.middle_name %></td>
+		    	<td><%= dependent.city_address1 %></br><%= dependent.city_address2 %></td>
+		    	<td><%= dependent.prov_address1 %></br><%= dependent.prov_address2 %></td>
+		    	<td><%= age(dependent.birth_date) %></td>
+		    	<td><%= dependent.relationship %></td>    
+		</tr>
+		<% end %>
+	</tbody>
+</table>
+</br>
+
+<p><strong>EDUCATIONAL ATTAINMENT</strong></p>
+<table class="table">
+	<thead>
+		<tr>
+			<th>Institution Name</th>
+			<th>Degree</th>
+			<th>Awards Received</th>
+			<th>Address</th>
+			<th>Year Started</th>
+			<th>Year Finished</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @mainfile.educations.each do |education| %> 
+		<tr>	
+		    	<td><%= education.institution_name %></td>
+		    	<td><%= education.degree %></td>
+		    	<td><%= education.awards %></td>
+		    	<td><%= education.address1 %></br><%= education.address2 %></td>
+		    	<td><%= education.year_start %></td>
+		    	<td><%= education.year_finished %></td> 
+		</tr>
+		<% end %>
+	</tbody>
+</table>
+</br>
+
+<p><strong>MEMBERSHIP WITH CLUBS/ORGANIZATIONS</strong></p>
+<table class="table">
+	<thead>
+		<tr>
+			<th>Club/Organization Name</th>
+			<th>Position/Rank</th>
+			<th>Start Date</th>
+			<th>End Date</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @mainfile.clubs.each do |club| %> 
+		<tr>	
+		    	<td><%= club.club_name %></td>
+		    	<td><%= club.position %></td>
+		    	<td><%= club.start_date %></td>
+		    	<td><%= club.end_date %></td> 
+		</tr>
+		<% end %>
+	</tbody>
+</table>
+</br>
+
+<p><strong>PLACES OF RESIDENCE SINCE BIRTH</strong></p>
+<table class="table">
+	<thead>
+		<tr>
+			<th>House #</th>
+			<th>Street</th>
+			<th>District/Town/City</th>
+			<th>Province</th>
+			<th>Start Date</th>
+			<th>End Date</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @mainfile.res_histories.each do |res_history| %> 
+		<tr>	
+		    	<td><%= res_history.house_number %></td>
+		    	<td><%= res_history.street %></td>
+		    	<td><%= res_history.dtc %></td>
+		    	<td><%= res_history.province %></td>
+		    	<td><%= res_history.start_date %></td>
+		    	<td><%= res_history.end_date %></td> 
+		</tr>
+		<% end %>
+	</tbody>
+</table>
+</br>
+
+<p><strong>EMPLOYMENT RECORD</strong></p>
+<table class="table">
+	<thead>
+		<tr>
+			<th>Employer Name</th>
+			<th>Job Title</th>
+			<th>Company Address</th>		
+			<th>Start Date</th>
+			<th>End Date</th>
+			<th>Reason for Leaving</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @mainfile.emp_histories.each do |emp_history| %> 
+		<tr>	
+		    	<td><%= emp_history.employer_name %></td>
+		    	<td><%= emp_history.job_title %></td>
+		    	<td><%= emp_history.company_address1 %></br><%= emp_history.company_address2 %></td>
+		    	<td><%= emp_history.start_date %></td>
+		    	<td><%= emp_history.end_date %></td>
+		    	<td><%= emp_history.reason %></td> 
+		</tr>
+		<% end %>
+	</tbody>
+</table>
+</br>
+
+<p><strong>FAMILY DATA</strong></p>
+<table class="table">
+	<thead>
+		<tr>
+			<th>Last Name</th>
+			<th>First Name</th>
+			<th>Middle Name</th>
+			<th>City Address</th>
+			<th>Provincial Address</th>
+			<th>Age</th>
+			<th>Relationship</th>
+			<th>Occupation</th>
+			<th>Birthdate</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @mainfile.family_ms.each do |family_m| %> 
+		<tr>	
+		    	<td><%= family_m.last_name %></td>
+		    	<td><%= family_m.first_name %></td>
+		    	<td><%= family_m.middle_name %></td>
+		    	<td><%= family_m.city_address1 %></br><%= family_m.city_address2 %></td>
+		    	<td><%= family_m.prov_address1 %></br><%= family_m.prov_address2 %></td>
+		    	<td><%= age(family_m.birth_date) %></td>
+		    	<td><%= family_m.relationship %></td>
+		    	<td><%= family_m.occupation %></td>
+		    	<td><%= family_m.birth_date %></td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
+</br>
+
+<p><strong>EMPLOYEE REFERENCES</strong></p>
+<table class="table">
+	<thead>
+		<tr>
+			<th>Last Name</th>
+			<th>First Name</th>
+			<th>Middle Name</th>
+			<th>City Address</th>
+			<th>Provincial Address</th>
+			<th>Occupation</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @mainfile.emp_references.each do |emp_reference| %> 
+		<tr>	
+		    	<td><%= emp_reference.last_name %></td>
+		    	<td><%= emp_reference.first_name %></td>
+		    	<td><%= emp_reference.middle_name %></td>
+		    	<td><%= emp_reference.city_address1 %></br><%= emp_reference.city_address2 %></td>
+		    	<td><%= emp_reference.prov_address1 %></br><%= emp_reference.prov_address2 %></td>
+		    	<td><%= emp_reference.occupation %></td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
+</br>
+
+<p><strong>PERSON TO CONTACT IN CASE OF EMERGENCY</strong></p>
+<table class="table table-borderless table-condensed table-hover">
+	<tbody>
+		<tr>
+			<td><strong>Name</strong></td>
+			<td><%= @mainfile.emergency_name %></td>
+			<td><strong>Relationship</strong></td>
+			<td><%= @mainfile.emergency_relationship %></td>
+		</tr>
+		<tr>
+			<td><strong>Address</strong></td>
+			<td><%= @mainfile.emergency_address %></td>
+			<td><strong>Contact Number</strong></td>
+			<td><%= @mainfile.emergency_number %></td>
+		</tr>
+	</tbody>
+</table>
+</br>
+
+<p><strong>ADDTIONAL DETAILS</strong></p>
+	<div class = "row">
+		<div class = "col-xs-12">
+			<p><strong>Have you been convicted of any crime?</strong></p>
+			<% if @mainfile.convicted? %>
+				<p>Yes</p>
+			<% else %>
+				<p>No</p>
+			<% end %>
+			
+			<p><strong>Do you have any pending case in court?</strong></p>
+			<% if @mainfile.pending_case? %>
+				<p>Yes</p>
+			<% else %>
+				<p>No</p>
+			<% end %>
+
+			<p><strong>Are you willing to be assigned anywhere as the agency may desire?</strong></p>
+			<% if @mainfile.assignment_willingness? %>
+				<p>Yes</p>
+			<% else %>
+				<p>No</p>
+			<% end %>
+
+			<p><strong>Are you willing to undergo On-the-Job Training (OJT) without pay for a period of the week?</strong></p>
+			<% if @mainfile.ojt? %>
+				<p>Yes</p>
+			<% else %>
+				<p>No</p>
+			<% end %>
+
+			<p><strong>Who referred you to S.S.S.I.?</strong></p>
+			<% if @mainfile.endorser != nil %>
+				<p><%= @mainfile.endorser %></p>
+			<% else %>
+				<p>No endorser</p>
+			<% end %>
+		</br>
+		</div>
+	</div>
+	</br>
+	<div class = "row">
+		<div class="col-xs-6">
+		</br>
+			<p><%= @mainfile.interviewing_officer %></p>
+			<p><strong>Interviewing Officer</strong></p>
+		</div>
+		<div class="col-xs-6">
+			</br>
+			<p></br></p>
+			<p><strong>Applicant's Signature</strong></p>
+		</div>
+	</div>
+<% else %>
+<p>You do not have sufficient permissions to do this action.</p>
+<% end %>

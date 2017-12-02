@@ -1,0 +1,17 @@
+<fieldset>
+</br>
+	<div class="well">
+		<%= link_to_remove_association "Remove", f, :class => "btn btn-danger" %>
+		</br>
+		<div class="row">
+			<div class="col-md-6">
+				<%= f.input :club_name, label: 'Club/Organiztion Name' %></br>
+				<%= f.input :position, label: 'Postion/Rank' %></br>
+			</div>
+			<div class="col-md-6">
+				<%= f.input :start_date, label: 'Start Date' %></br>
+				<%= f.input :end_date, label: 'End Date' %></br>
+			</div>
+		</div>
+	</div>
+</fieldset>

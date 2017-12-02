@@ -1,0 +1,20 @@
+<fieldset>
+</br>
+	<div class="well">
+		<%= link_to_remove_association "Remove", f, :class => "btn btn-danger" %>
+		</br>
+		<div class="row">
+			<div class="col-md-6">
+				<%= f.input :institution_name, label: 'Institution Name' %></br>
+				<%= f.input :degree, label: 'Degree' %></br>
+				<%= f.input :awards, label: 'Awards Received' %></br>
+			</div>
+			<div class="col-md-6">
+				<%= f.input :address1, label: 'Address Line 1' %></br>
+				<%= f.input :address2, label: 'Address Line 2' %></br>
+				<%= f.input :year_start, label: 'Year Started' %></br>
+				<%= f.input :year_finished, label: 'Year Finished' %></br>
+			</div>
+		</div>
+	</div>
+</fieldset>

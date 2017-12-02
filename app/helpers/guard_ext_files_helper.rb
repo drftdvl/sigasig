@@ -1,0 +1,2 @@
+module GuardExtFilesHelper
+end

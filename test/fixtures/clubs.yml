@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  club_name: MyString
+  position: MyString
+  start_date: 2017-09-14
+  end_date: 2017-09-14
+
+two:
+  club_name: MyString
+  position: MyString
+  start_date: 2017-09-14
+  end_date: 2017-09-14

@@ -1,0 +1,20 @@
+ <fieldset>
+</br>
+	<div class="well">
+		<%= link_to_remove_association "Remove", f, :class => "btn btn-danger" %>
+		</br>
+		<div class="row">
+			<div class="col-md-6">
+				<%= f.input :employer_name, label: 'Employer Name' %></br>
+				<%= f.input :company_address1, label: 'Company Address Line 1' %></br>
+				<%= f.input :company_address2, label: 'Company Address Line 2' %></br>
+				<%= f.input :start_date, label: 'Start Date' %></br>
+				<%= f.input :end_date, label: 'End Date' %></br>
+			</div>
+			<div class="col-md-6">
+				<%= f.input :job_title, label: 'Job Title' %></br>
+				<%= f.input :reason, label: 'Reason for Leaving' %></br>
+			</div>
+		</div>
+	</div>
+</fieldset>

@@ -1,0 +1,8 @@
+<h1>Edit Employee</h1>
+<%= link_to 'Back', main_files_path, :class => "btn btn-default" %>
+</br>
+<% if current_user.admin? %>
+<%= render 'form', main_file: @mainfile %>
+<% else %>
+<p>You do not have sufficient permissions to do this action.</p>
+<% end %>

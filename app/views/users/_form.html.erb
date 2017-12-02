@@ -1,0 +1,39 @@
+<%= simple_form_for @user, :html => { :multipart => true } do |f| %>
+<% if @user.errors.any? %>
+</br>
+	<div class="panel panel-danger">
+		<div class="panel-heading">Errors</div>
+		<div class="panel-body">
+			<div class="container">
+		    	<% @user.errors.full_messages.each do |message| %>
+		    		<li><%= message %></li>
+		    	<% end %>
+	    	</div>
+	  	</div>
+	</div>
+<% end %>
+</br>
+<div class="panel panel-default">
+  <div class="panel-heading">User Data</div>
+  <div class="panel-body">
+	<div class = "row">
+		<div class = "col-md-6">
+			<% if @user.name != "Root" && @user.name != "Sigasig Guest" %>
+			<%= f.input :email, label: 'E-Mail' %></br>
+			<% end %>
+			<%= f.input :password, label: 'Password' %></br>
+		</div>
+		<% if @user.name != "Root" && @user.name != "Sigasig Guest" %>
+			<div class = "col-md-6">
+				<%= f.input :name, label: 'Name' %></br>
+				<%= f.input :admin, label: 'Is Admin?' %></br>
+			</div>
+		<% end %>
+	</div>
+  </div>
+</div>
+</br>
+<span>
+	<%= f.submit "OK", class: "btn btn-default" %>
+</span>
+<% end %>

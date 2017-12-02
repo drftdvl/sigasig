@@ -1,0 +1,17 @@
+<div class="nested-fields">
+</br>
+	<div class="well">
+		<%= link_to_remove_association "Remove", f, :class => "btn btn-danger" %>
+		</br>
+		<p>Tip: Copy the SSS Number previously entered above and paste it in the badge number field. The SSS Number and the badge number is the same.</p>
+		<div class="row">
+			<div class="col-md-6">
+				<%= f.input :security_license_number, label: 'Security License Number' %></br>
+				<%= f.input :expiry_date, label: 'Expiry Date' %></br>
+			</div>
+			<div class="col-md-6">
+				<%= f.input :badge_number, label: 'Badge Number' %></br>
+			</div>
+		</div>
+	</div>
+</div>

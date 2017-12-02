@@ -1,0 +1,23 @@
+<div class="nested-fields">
+</br>
+	<div class="well">
+		<%= link_to_remove_association "Remove", f, :class => "btn btn-danger" %>
+		</br>
+		<div class="row">
+			<div class="col-md-6">
+				<%= f.input :last_name, label: 'Last Name' %></br>
+				<%= f.input :first_name, label: 'First Name' %></br>
+				<%= f.input :middle_name, label: 'Middle Name' %></br>
+				<%= f.input :relationship, label: 'Relationship' %></br>
+				<%= f.input :occupation, label: 'Occupation' %></br>
+			</div>
+			<div class="col-md-6">
+				<%= f.input :city_address1, label: 'City Address Line 1' %></br>
+				<%= f.input :city_address2, label: 'City Address Line 2' %></br>
+				<%= f.input :prov_address1, label: 'Provincial Address Line 1' %></br>
+				<%= f.input :prov_address2, label: 'Provincial Address Line 1' %></br>
+				<%= f.input :birth_date, :as => :date, :start_year => 1910, :end_year => Date.today.year, label: 'Birth Date' %></br>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  start_date: 2017-09-14
+  end_date: 2017-09-14
+  house_number: 1
+  street: MyString
+  dtc: MyString
+  province: MyString
+
+two:
+  start_date: 2017-09-14
+  end_date: 2017-09-14
+  house_number: 1
+  street: MyString
+  dtc: MyString
+  province: MyString

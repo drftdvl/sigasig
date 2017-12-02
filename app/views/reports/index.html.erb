@@ -1,0 +1,15 @@
+<h1>Reports</h1>
+<% if current_user.admin? %>
+</br>
+<div class="panel panel-default">
+	<div class="panel-heading">Employee Lists</div>
+	<div class="panel-body">
+		<div class="container">
+		    <li><a href="<%= reports_index_path(format: :xlsx) %>"type="button" class="btn btn-default"><span class="glyphicon glyphicon-save-file" aria-hidden="true"></span> Save as Excel (.xlsx)</a> All <strong>Security Guards</strong></li>
+		    <!-- <li><a href="<%= reports_index_path(format: :xlsx) %>"type="button" class="btn btn-default"><span class="glyphicon glyphicon-save-file" aria-hidden="true"></span> Save as Excel (.xlsx)</a> All <strong>Admin Employees</strong></li>	-->
+	    </div>
+	  </div>
+</div>
+<% else %>
+<p>You do not have sufficient permissions to access this module.</p>
+<% end %>

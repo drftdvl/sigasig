@@ -1,0 +1,28 @@
+wb = xlsx_package.workbook
+wb.styles do |s|
+black_cell = s.add_style :bg_color => "00", :fg_color => "FF", :alignment => { :horizontal=> :center }
+black_cell_left = s.add_style :b => true, :bg_color => "00", :fg_color => "FF"
+norm_cell = s.add_style :b => true
+wb.add_worksheet(name: "Security Guards") do |sheet|
+	sheet.merge_cells("A1:H1")
+	sheet.merge_cells("A2:H2")
+	sheet.merge_cells("A3:H3")
+	sheet.merge_cells("A4:H4")
+	sheet.merge_cells("A5:H5")
+	sheet.add_row ["MASTER LIST DATA OUTPUT"], :style => [black_cell_left]
+	sheet.add_row ["SIGASIG SECURITY SERVICES INC"], :style => [black_cell]
+	sheet.add_row ["Rm 308 3rd Floor Topaz Building, 99-101 Kamias Road, Quezon City"], :style => [black_cell]
+	sheet.add_row ["Tel No 335-0439 TelFax No 355-7254"], :style => [black_cell]
+	sheet.add_row ["LTO PSA-900606-2009"], :style => [black_cell]
+	sheet.add_row ["Last Name", "First Name", "Middle Name", "Birthdate", "Security License Number", "Expiry Date", "Designation","Status"], :style => norm_cell
+	sheet.column_widths 20, 15, 15, 15, 25, 15, 15, 15
+	@guard.each do |mainfile|
+		if mainfile.emp_status_id == 6
+	    	sheet.add_row [mainfile.family_name, mainfile.given_name, mainfile.middle_name, mainfile.birth_date, mainfile.guard_ext_file.security_license_number, mainfile.guard_ext_file.expiry_date, mainfile.job_position, mainfile.emp_status.desc], :types => [:string, :string, :string, nil, :string, nil, :string, nil]
+
+	    else
+	    	sheet.add_row [mainfile.family_name, mainfile.given_name, mainfile.middle_name, mainfile.birth_date, mainfile.guard_ext_file.security_license_number, mainfile.guard_ext_file.expiry_date, mainfile.job_position], :types => [:string, :string, :string, nil, :string, nil, :string]
+	    end
+	end
+end
+end

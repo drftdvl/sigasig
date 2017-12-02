@@ -1,0 +1,313 @@
+<!-- </br>
+<div class="panel panel-info">
+	<div class="panel-heading">Instructions</div>
+	<div class="panel-body">
+		<div class="container">
+			<p>Very important! So please read this before filling up the application form.</p>
+			<p>Please use the prescribed format when encoding the following information:</p>
+			<p>
+				SSS Number: xx-xxxxxxx-xx</br>
+				Incorrect <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>: 12123456712</br>
+				Correct <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>: 12-1234567-12</br>
+				</br>
+				PhilHealth Number: xx-xxxxxxxxx-x</br>
+				Incorrect <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>: 121234567891</br>
+				Correct <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>: 12-123456789-1</br>
+				</br>
+				Tax Income Number (TIN): xxx-xxx-xxx-xxxx</br>
+				Incorrect <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>: 1231231234</br>
+				Correct <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>: 123-123-123-1234</br>
+				</br>
+				If you have an old, 9 digit TIN, enter your number as is: xxx-xxx-xxx</br>
+				Incorrect <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>: 123123123</br>
+				Correct <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>: 123-123-123</br>
+				</br>
+				Pag-IBIG Number: xxxx-xxxx-xxxx</br>
+				Incorrect <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>: 123412341234</br>
+				Correct <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>: 1234-1234-1234</br>
+			</p>
+	    </div>
+	</div>
+</div> -->
+<%= simple_form_for @mainfile, :html => { :multipart => true } do |f| %>
+<% if @mainfile.errors.any? %>
+</br>
+	<div class="panel panel-danger">
+		<div class="panel-heading">Errors</div>
+		<div class="panel-body">
+			<div class="container">
+		    	<% @mainfile.errors.full_messages.each do |message| %>
+		    		<li><%= message %></li>
+		    	<% end %>
+	    	</div>
+	  	</div>
+	</div>
+<% end %>
+</br>
+<div class="panel panel-default">
+  <div class="panel-heading">Personal Data</div>
+  <div class="panel-body">
+    <div class = "row">
+		<div class = "col-md-4">
+			<%= f.input :family_name, label: 'Family Name' %></br>
+		</div>
+		<div class = "col-md-4">
+			<%= f.input :given_name, label: 'Given Name' %></br>
+		</div>
+		<div class = "col-md-4">
+			<%= f.input :middle_name, label: 'Middle Name' %></br>
+		</div>
+	</div>
+	</br>
+	<div class = "row">
+		<div class = "col-md-6">
+		<!-- job specifics -->
+			<%= f.input :pagibig_number, label: 'Pag-IBIG MID Number (xxxx-xxxx-xxxx)' %></br>
+			<%= f.input :sss_number, label: 'SSS Number (xx-xxxxxxx-xx)' %></br>
+			<%= f.input :job_position, label: 'Job Position' %></br>
+			<div class="row">
+				<div class="col-md-6">
+					<%= f.label :emp_type_id, label: 'Employee Type' %></br>
+					<%= f.collection_select :emp_type_id, EmpType.all,:id, :desc, include_blank: false %>
+				</div>
+				<div class="col-md-6">
+					<%= f.label :emp_status_id, label: 'Employment Status' %></br>
+					<%= f.collection_select :emp_status_id, EmpStatus.all, :id, :desc, include_blank: false %>
+				</div>
+			</div>
+		</div>
+		<div class = "col-md-6">
+			<%= f.input :tin_number, label: 'TIN (xxx-xxx-xxx-xxxx or xxx-xxx-xxx)' %></br>
+			<%= f.input :philhealth, label: 'PhilHealth (xx-xxxxxxxxx-x)' %></br>
+			<%= f.input :application_date, :as => :date, :start_year => 1910, :end_year => Date.today.year, label: 'Application Date' %></br>
+			<%= f.input :hire_date, :as => :date, :start_year => 1910, :end_year => Date.today.year, :include_blank => true, label: 'Hire Date' %></br>
+			<% if current_user.admin? %>
+				<%= f.input :retirement_date, :as => :date, :start_year => 1910, :end_year => Date.today.year, :include_blank => true, label: 'Retirement Date (For retired guards only)' %></br>
+			<% end %>
+		</div>
+	</div>
+	<div class = "row">
+		<div class = "col-md-6">
+		<!-- first column -->
+			<%= f.input :city_address1, label: 'City Address Line 1' %></br>
+			<%= f.input :city_address2, label: 'City Address Line 2' %></br>
+			<%= f.input :prov_address1, label: 'Provincial Address Line 1' %></br>
+			<%= f.input :prov_address2, label: 'Provincial Address Line 2' %></br>
+			<%= f.input :birth_date, :as => :date, :start_year => 1910, :end_year => Date.today.year, label: 'Birth Date' %></br>
+			<%= f.input :birth_place, label: 'Birth Place' %></br>
+			<%= f.input :hobbies, label: 'Hobbies' %></br>
+			<%= f.input :birth_marks, label: 'Birthmarks' %></br>
+			<%= f.input :language, label: 'Languages/Dialects Spoken' %></br>
+			<%= f.input :job_skills, label: 'Job Skills' %></br>
+		</div>
+		<div class = "col-md-6">
+		<!-- second column -->
+			<div class = "row">
+				<div class="col-md-2">
+					<strong>Height</strong>
+				</div>
+				<div class = "col-md-2">
+					<%= f.input :height_ft, label: 'Ft' %>
+				</div>
+				<div class="col-md-2">
+					<%= f.input :height_in, label: 'In' %>
+				</div>
+			</div>
+			<%= f.input :weight, label: 'Weight (kg)' %></br>
+
+			<%= f.input :blood_type, collection: ["A", "A+", "B", "B+", "AB", "AB+", "O", "O+"] %></br>
+			<%= f.input :citizenship, label: 'Citizenship' %></br>
+			<%= f.input :hair_color, label: 'Color of Hair' %></br>
+			<%= f.input :religion, label: 'Religion' %></br>
+			<div class="row">
+				<div class="col-md-6">
+					<%= f.label :mar_status_id, label: 'Civil Status' %></br>
+					<%= f.collection_select :mar_status_id, MarStatus.all,:id, :desc, include_blank: false %>
+				</div>
+				<div class="col-md-6">
+					<%= f.label :sex, label: 'Sex' %></br>
+					<%= f.collection_radio_buttons :sex, [['M', 'Male'] ,['F', 'Female']], :first, :last %>
+				</div>
+			</div>
+		</div>
+	</div>
+  </div>
+</div>
+</br>
+<!-- nested guard form -->
+<div class="panel panel-default">
+  <div class="panel-heading">For Security Guards Only</div>
+  <div class="panel-body">
+  	<div id="guard_ext_file">
+	  	<%= f.fields_for :guard_ext_file do |builder| %>
+			<%= render 'guard_ext_file_fields', f: builder %>
+		<% end %>
+		<div class="links">
+	  		<%= link_to_add_association 'Add Guard Info', f, :guard_ext_file, :partial => 'guard_ext_file_fields', :class => "btn btn-primary", :force_non_association_create => true %>
+	  	</div>
+  	</div>
+  </div>
+</div>
+</br>
+<!-- spouse -->
+<div class="panel panel-default">
+  <div class="panel-heading">Spouse Information</div>
+  <div class="panel-body">
+  	<div id="spouses">
+	  	<%= f.fields_for :spouses do |builder| %>
+			<%= render 'spouse_fields', f: builder %>
+		<% end %>
+		<div class="links">
+	  		<%= link_to_add_association 'Add Spouse', f, :spouses, :partial => 'spouse_fields', :class => "btn btn-primary" %>
+	  	</div>
+  	</div>
+  </div>
+</div>
+</br>
+<!-- dependents -->
+<div class="panel panel-default">
+  <div class="panel-heading">Dependents</div>
+  <div class="panel-body">
+  	<div id="dependents">
+	  	<%= f.fields_for :dependents do |builder| %>
+			<%= render 'dependent_fields', f: builder %>
+		<% end %>
+		<div class="links">
+	  		<%= link_to_add_association 'Add Dependent', f, :dependents, :partial => 'dependent_fields', :class => "btn btn-primary" %>
+		</div>
+    </div>
+  </div>
+</div>
+</br>
+<!-- education -->
+<div class="panel panel-default">
+  <div class="panel-heading">Educational Attainment</div>
+  <div class="panel-body">
+  	<div id="educations">
+	  	<%= f.fields_for :educations do |builder| %>
+			<%= render 'education_fields', f: builder %>
+		<% end %>
+		<div class="links">
+			<%= link_to_add_association 'Add Educational Attainment', f, :educations, :partial => 'education_fields', :class => "btn btn-primary" %>
+		</div>
+	</div>
+  </div>
+</div>
+</br>
+<!-- clubs -->
+<div class="panel panel-default">
+  <div class="panel-heading">Membership with clubs/organizations</div>
+  <div class="panel-body">
+  	<div id="clubs">
+	  	<%= f.fields_for :clubs do |builder| %>
+			<%= render 'club_fields', f: builder %>
+		<% end %>
+		<div class="links">
+			<%= link_to_add_association 'Add Club/Organization', f, :clubs, :partial => 'club_fields', :class => "btn btn-primary" %>
+		</div>
+	</div>
+  </div>
+</div>
+</br>
+<!-- residences -->
+<div class="panel panel-default">
+  <div class="panel-heading">Places of residence since birth</div>
+  <div class="panel-body">
+  	<div id="res_histories">
+	  	<%= f.fields_for :res_histories do |builder| %>
+			<%= render 'res_history_fields', f: builder %>
+		<% end %>
+		<div class="links">
+			<%= link_to_add_association 'Add Residence Record', f, :res_histories, :partial => 'res_history_fields', :class => "btn btn-primary" %>
+		</div>
+	</div>
+  </div>
+</div>
+</br>
+<!-- employment -->
+<div class="panel panel-default">
+  <div class="panel-heading">Employment Record (Work backwards from present)</div>
+  <div class="panel-body">
+  	<div id="emp_histories">
+	  	<%= f.fields_for :emp_histories do |builder| %>
+			<%= render 'emp_history_fields', f: builder %>
+		<% end %>
+		<div class="links">
+			<%= link_to_add_association 'Add Employment Record', f, :emp_histories, :partial => 'emp_history_fields', :class => "btn btn-primary" %>
+		</div>
+	</div>
+  </div>
+</div>
+</br>
+<!-- family members -->
+<div class="panel panel-default">
+  <div class="panel-heading">Family Data</div>
+  <div class="panel-body">
+  	<div id="family_ms">
+  		<%= f.fields_for :family_ms do |builder| %>
+			<%= render 'family_m_fields', f: builder %>
+		<% end %>
+		<div class="links">
+			<%= link_to_add_association 'Add Family Member', f, :family_ms, :partial => 'dependent_fields', :class => "btn btn-primary" %>
+		</div>
+	</div>
+  </div>
+</div>
+</br>
+<!-- employee references -->
+<div class="panel panel-default">
+  <div class="panel-heading">Employee References</div>
+  <div class="panel-body">
+  	<div id="emp_references">
+		  	<%= f.fields_for :emp_references do |builder| %>
+				<%= render 'emp_reference_fields', f: builder %>
+			<% end %>
+		<div class="links">
+			<%= link_to_add_association 'Add Employee Reference', f, :emp_references, :partial => 'emp_reference_fields', :class => "btn btn-primary" %>
+		</div>
+	</div>
+  </div>
+</div>
+</br>
+<!-- bottom part -->
+<div class="panel panel-default">
+  <div class="panel-heading">Person to contact in case of emergency</div>
+  <div class="panel-body">
+	<div class = "row">
+		<div class = "col-md-6">
+			<%= f.input :emergency_name, label: 'Name' %></br>
+			<%= f.input :emergency_address, label: 'Address' %></br>
+		</div>
+		<div class = "col-md-6">
+			<%= f.input :emergency_relationship, label: 'Relationship' %></br>
+			<%= f.input :emergency_number, label: 'Contact Details' %></br>
+		</div>
+	</div>
+  </div>
+</div>
+</br>
+
+<div class="panel panel-default">
+  <div class="panel-heading">Additonal Information</div>
+  <div class="panel-body">
+	<div class = "row">
+		<div class = "col-md-6">
+			<%= f.input :convicted, label: 'Have you been convicted of any crime? (Check if yes)' %></br>
+			<%= f.input :pending_case, label: 'Do you have any pending case in court? (Check if yes)' %></br>
+			<%= f.input :assignment_willingness, label: 'Are you willing to be assigned anywhere as the agency may desire? (Check if yes)' %></br>
+			<%= f.input :ojt, label: 'Are you willing to undergo On-the-Job Training (OJT) without pay for a period of the week? (Check if yes)' %></br>
+		</div>
+		<div class="col-md-6">
+			<%= f.input :endorser, label: 'Who referred you to S.S.S.I.?' %></br>
+			<%= f.input :interviewing_officer, label: 'Interviewing officer' %></br>
+			<%= f.file_field :picture %></br>
+		</div>
+	</div>
+  </div>
+</div>
+</br>
+	
+<span>
+	<%= f.submit "OK", class: "btn btn-default" %>
+</span>
+<% end %>

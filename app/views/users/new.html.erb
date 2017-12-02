@@ -1,0 +1,8 @@
+<h1>Create New User</h1>
+<%= link_to 'Back', users_path, :class => "btn btn-default" %>
+</br>
+<% if current_user.admin? && current_user.name === "Root" %>
+<%= render 'form', user: @user %>
+<% else %>
+<p>You do not have sufficient permissions to do this action.</p>
+<% end %>
