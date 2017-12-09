@@ -25,7 +25,11 @@
           <td><%= mainfile.given_name %></td>
           <td><%= mainfile.emp_type.desc %></td>
           <td><%= mainfile.emp_status.desc %></td>
-          <td><%= mainfile.guard_ext_file.expiry_date %></td>
+          <% if mainfile.guard_ext_file != nil %>
+            <td><%= mainfile.guard_ext_file.expiry_date %></td>
+          <% else %>
+            <td>N/A</td>
+          <% end %>
           <td><%= link_to 'View', main_file_path(mainfile), class: "btn btn-default" %></td>
           <td><%= link_to 'Edit', edit_main_file_path(mainfile), class: "btn btn-warning" %></td>
           <td><%= link_to 'Delete', main_file_path(mainfile), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %></td>

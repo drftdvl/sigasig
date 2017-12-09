@@ -11,8 +11,8 @@
 			</div>
 			<div class="col-md-6">
 				<%= f.input :province, label: 'Province' %></br>
-				<%= f.input :start_date, label: 'Start Date' %></br>
-				<%= f.input :end_date, label: 'End Date' %></br>
+				<%= f.input :start_date, :as => :date, :start_year => 1910, :end_year => Date.today.year, label: 'Start Date' %></br>
+				<%= f.input :end_date, :as => :date, :start_year => 1910, :end_year => Date.today.year, label: 'End Date' %></br>
 			</div>
 		</div>
 	</div>

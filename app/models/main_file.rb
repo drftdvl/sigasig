@@ -24,7 +24,7 @@ class MainFile < ActiveRecord::Base
       :emp_type_id,
       :mar_status_id,
       :presence => true
-    validates :sss_number, presence: true, length: 13..13
+    validates :sss_number, presence: true, length: 12..12
     validates :tin_number, presence: true, length: 11..16
     validates :philhealth, presence: true, length: 14..14
     validates :pagibig_number, presence: true, length: 14..14
@@ -38,21 +38,21 @@ class MainFile < ActiveRecord::Base
 
 	has_one :guard_ext_file, :dependent => :destroy
 	accepts_nested_attributes_for :guard_ext_file, :reject_if => :all_blank, allow_destroy: true
-	has_many :spouses
+	has_many :spouses, :dependent => :destroy
 	accepts_nested_attributes_for :spouses, :reject_if => :all_blank, allow_destroy: true
-	has_many :clubs
+	has_many :clubs, :dependent => :destroy
 	accepts_nested_attributes_for :clubs, :reject_if => :all_blank, allow_destroy: true
-	has_many :educations
+	has_many :educations, :dependent => :destroy
 	accepts_nested_attributes_for :educations, :reject_if => :all_blank, allow_destroy: true
-	has_many :emp_histories
+	has_many :emp_histories, :dependent => :destroy
 	accepts_nested_attributes_for :emp_histories, :reject_if => :all_blank, allow_destroy: true
-	has_many :emp_references
+	has_many :emp_references, :dependent => :destroy
 	accepts_nested_attributes_for :emp_references, :reject_if => :all_blank, allow_destroy: true
-	has_many :family_ms
+	has_many :family_ms, :dependent => :destroy
 	accepts_nested_attributes_for :family_ms, :reject_if => :all_blank, allow_destroy: true
-	has_many :res_histories
+	has_many :res_histories, :dependent => :destroy
 	accepts_nested_attributes_for :res_histories, :reject_if => :all_blank, allow_destroy: true
-	has_many :dependents
+	has_many :dependents, :dependent => :destroy
 	accepts_nested_attributes_for :dependents, :reject_if => :all_blank, allow_destroy: true
 
   has_attached_file :picture, styles: { medium: "300x300>", thumb: "100x100>" },

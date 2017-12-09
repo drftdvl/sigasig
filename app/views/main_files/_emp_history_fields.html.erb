@@ -8,8 +8,8 @@
 				<%= f.input :employer_name, label: 'Employer Name' %></br>
 				<%= f.input :company_address1, label: 'Company Address Line 1' %></br>
 				<%= f.input :company_address2, label: 'Company Address Line 2' %></br>
-				<%= f.input :start_date, label: 'Start Date' %></br>
-				<%= f.input :end_date, label: 'End Date' %></br>
+				<%= f.input :start_date, :as => :date, :start_year => 1910, :end_year => Date.today.year, label: 'Start Date' %></br>
+				<%= f.input :end_date, :as => :date, :start_year => 1910, :end_year => Date.today.year, label: 'End Date' %></br>
 			</div>
 			<div class="col-md-6">
 				<%= f.input :job_title, label: 'Job Title' %></br>
