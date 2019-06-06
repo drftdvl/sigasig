@@ -98,6 +98,7 @@ class MainFilesController < ApplicationController
       :emp_status_id,
       :mar_status_id,
       :picture,
+      :mobile_number,
       clubs_attributes: [ :id, :club_name, :position, :start_date, :end_date, :_destroy ],
       dependents_attributes: [:id, :last_name, :first_name, :middle_name, :city_address1, :city_address2, :prov_address1, :prov_address2, :relationship, :birth_date, :_destroy],
       educations_attributes: [:id, :institution_name, :address1, :address2, :year_start, :year_finished, :degree, :awards, :_destroy],

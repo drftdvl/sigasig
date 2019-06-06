@@ -79,6 +79,7 @@
 		<div class = "col-md-6">
 			<%= f.input :tin_number, label: 'TIN (xxx-xxx-xxx-xxxx or xxx-xxx-xxx)' %></br>
 			<%= f.input :philhealth, label: 'PhilHealth (xx-xxxxxxxxx-x)' %></br>
+			<%= f.input :mobile_number, label: 'Contact Number' %></br>
 			<%= f.input :application_date, :as => :date, :start_year => 1910, :end_year => Date.today.year, label: 'Application Date' %></br>
 			<%= f.input :hire_date, :as => :date, :start_year => 1910, :end_year => Date.today.year, :include_blank => true, label: 'Hire Date' %></br>
 			<% if current_user.admin? %>
@@ -113,8 +114,9 @@
 					<%= f.input :height_in, label: 'In' %>
 				</div>
 			</div>
+			<div style="height: 20px;"></div>
 			<%= f.input :weight, label: 'Weight (kg)' %></br>
-
+			<!-- <div style="height: 34px;"></div> -->
 			<%= f.input :blood_type, collection: ["A", "A+", "B", "B+", "AB", "AB+", "O", "O+"] %></br>
 			<%= f.input :citizenship, label: 'Citizenship' %></br>
 			<%= f.input :hair_color, label: 'Color of Hair' %></br>

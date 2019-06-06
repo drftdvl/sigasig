@@ -31,6 +31,7 @@ class MainFile < ActiveRecord::Base
     validates_numericality_of :weight, :greater_than_or_equal_to => 0
     validates_numericality_of :height_in, :greater_than_or_equal_to => 0, :only_integer => true
     validates_numericality_of :height_ft, :greater_than_or_equal_to => 0, :only_integer => true
+    validates :mobile_number, format: { with: /\A[+]?\d+\z/, message: "Integer only. No sign allowed." }, :presence => true
 
   belongs_to :emp_type
 	belongs_to :emp_status
