@@ -59,9 +59,146 @@
 		</div>
 	</div>
 	</br>
-	<div class = "row">
+
+	<div class="row">
+		<div class="col-md-6 col-xs-12">
+			<%= f.input :pagibig_number, label: 'Pag-IBIG MID Number (xxxx-xxxx-xxxx)' %>
+		</div>
+		<div class="col-md-6 col-xs-12">
+			<%= f.input :tin_number, label: 'TIN (xxx-xxx-xxx-xxxx or xxx-xxx-xxx)' %>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6 col-xs-12">
+			<%= f.input :sss_number, label: 'SSS Number (xx-xxxxxxx-x)' %>
+		</div>
+		<div class="col-md-6 col-xs-12">
+			<%= f.input :philhealth, label: 'PhilHealth (xx-xxxxxxxxx-x)' %>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6 col-xs-12">
+			<%= f.input :job_position, label: 'Job Position' %>
+		</div>
+		<div class="col-md-6 col-xs-12">
+			<%= f.input :mobile_number, label: 'Contact Number' %>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6 col-xs-12">
+			<%= f.input :application_date, :as => :date, :start_year => 1910, :end_year => Date.today.year, label: 'Application Date' %>
+		</div>
+		<div class="col-md-6 col-xs-12">
+			<div class="row">
+				<div class="col-md-6">
+					<%= f.label :emp_type_id, label: 'Employee Type' %></br>
+					<%= f.collection_select :emp_type_id, EmpType.all,:id, :desc, include_blank: false %>
+				</div>
+				<div class="col-md-6">
+					<%= f.label :emp_status_id, label: 'Employment Status' %></br>
+					<%= f.collection_select :emp_status_id, EmpStatus.all, :id, :desc, include_blank: false %>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6 col-xs-12">
+			<%= f.input :hire_date, :as => :date, :start_year => 1910, :end_year => Date.today.year, :include_blank => true, label: 'Hire Date' %>
+		</div>
+		<div class="col-md-6 col-xs-12">
+			<div class="row">
+				<div class="col-md-6">
+					<%= f.label :mar_status_id, label: 'Civil Status' %></br>
+					<%= f.collection_select :mar_status_id, MarStatus.all,:id, :desc, include_blank: false %>
+				</div>
+				<div class="col-md-6">
+					<%= f.label :sex, label: 'Sex' %></br>
+					<%= f.collection_radio_buttons :sex, [['M', 'Male'] ,['F', 'Female']], :first, :last %>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6 col-xs-12">
+			<% if current_user.admin? %>
+				<%= f.input :retirement_date, :as => :date, :start_year => 1910, :end_year => Date.today.year, :include_blank => true, label: 'Retirement Date (For retired guards only)' %>
+			<% end %>
+		</div>
+		<div class="col-md-6 col-xs-12">
+			<div class = "row">
+				<div class="col-md-2">
+					<strong>Height</strong>
+				</div>
+				<div class = "col-md-2">
+					<%= f.input :height_ft, label: 'Ft' %>
+				</div>
+				<div class="col-md-2">
+					<%= f.input :height_in, label: 'In' %>
+				</div>
+				<div class="col-md-6">
+					<%= f.input :weight, label: 'Weight (kg)' %>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-6 col-xs-12">
+			<%= f.input :birth_date, :as => :date, :start_year => 1910, :end_year => Date.today.year, label: 'Birth Date' %>
+		</div>
+		<div class="col-md-6 col-xs-12">
+			<%= f.input :birth_place, label: 'Birth Place' %>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-3 col-xs-12">
+			<%= f.input :citizenship, label: 'Citizenship' %>
+		</div>
+		<div class="col-md-3 col-xs-12">
+			<%= f.input :blood_type, collection: ["A", "A+", "B", "B+", "AB", "AB+", "O", "O+"] %>
+		</div>
+		<div class="col-md-3 col-xs-12">
+			<%= f.input :hair_color, label: 'Color of Hair' %>
+		</div>
+		<div class="col-md-3 col-xs-12">
+			<%= f.input :birth_marks, label: 'Birthmarks' %>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6 col-xs-12">
+			<%= f.input :city_address1, label: 'City Address Line 1' %>
+		</div>
+		<div class="col-md-6 col-xs-12">
+			<%= f.input :prov_address1, label: 'Provincial Address Line 1' %>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6 col-xs-12">
+			<%= f.input :city_address2, label: 'City Address Line 2' %>
+		</div>
+		<div class="col-md-6 col-xs-12">
+			<%= f.input :prov_address2, label: 'Provincial Address Line 2' %>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6 col-xs-12">
+			<%= f.input :hobbies, label: 'Hobbies' %>
+		</div>
+		<div class="col-md-6 col-xs-12">
+			<%= f.input :religion, label: 'Religion' %>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6 col-xs-12">
+			<%= f.input :language, label: 'Languages/Dialects Spoken' %>
+		</div>
+		<div class="col-md-6 col-xs-12">
+			<%= f.input :job_skills, label: 'Job Skills' %>
+		</div>
+	</div>
+
+	<!-- <div class = "row">
 		<div class = "col-md-6">
-		<!-- job specifics -->
 			<%= f.input :pagibig_number, label: 'Pag-IBIG MID Number (xxxx-xxxx-xxxx)' %></br>
 			<%= f.input :sss_number, label: 'SSS Number (xx-xxxxxxx-x)' %></br>
 			<%= f.input :job_position, label: 'Job Position' %></br>
@@ -86,10 +223,9 @@
 				<%= f.input :retirement_date, :as => :date, :start_year => 1910, :end_year => Date.today.year, :include_blank => true, label: 'Retirement Date (For retired guards only)' %></br>
 			<% end %>
 		</div>
-	</div>
-	<div class = "row">
+	</div> -->
+	<!-- <div class = "row">
 		<div class = "col-md-6">
-		<!-- first column -->
 			<%= f.input :city_address1, label: 'City Address Line 1' %></br>
 			<%= f.input :city_address2, label: 'City Address Line 2' %></br>
 			<%= f.input :prov_address1, label: 'Provincial Address Line 1' %></br>
@@ -102,7 +238,6 @@
 			<%= f.input :job_skills, label: 'Job Skills' %></br>
 		</div>
 		<div class = "col-md-6">
-		<!-- second column -->
 			<div class = "row">
 				<div class="col-md-2">
 					<strong>Height</strong>
@@ -116,7 +251,6 @@
 			</div>
 			<div style="height: 20px;"></div>
 			<%= f.input :weight, label: 'Weight (kg)' %></br>
-			<!-- <div style="height: 34px;"></div> -->
 			<%= f.input :blood_type, collection: ["A", "A+", "B", "B+", "AB", "AB+", "O", "O+"] %></br>
 			<%= f.input :citizenship, label: 'Citizenship' %></br>
 			<%= f.input :hair_color, label: 'Color of Hair' %></br>
@@ -131,8 +265,8 @@
 					<%= f.collection_radio_buttons :sex, [['M', 'Male'] ,['F', 'Female']], :first, :last %>
 				</div>
 			</div>
-		</div>
-	</div>
+		</div> -->
+
   </div>
 </div>
 </br>
