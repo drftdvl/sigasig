@@ -1,18 +1,18 @@
 development:
-  #adapter: mysql2
-  #encoding: utf8
-  #reconnect: false
-  #database: sigasig_development
-  #pool: 5
-  #host: localhost
-  #username: root
-  #password: 123456
-  #socket: /tmp/mysql.sock
-  #socket: /Applications/rubystack-2.2.6-0/mysql/tmp/mysql.sock
-  adapter: sqlite3
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  database: sigasig_development
   pool: 5
-  timeout: 5000
-  database: db/development.sqlite3
+  host: localhost
+  username: root
+  password: 123456
+  #socket: /tmp/mysql.sock
+  socket: /Applications/rubystack-2.2.6-1/mysql/tmp/mysql.sock
+  #adapter: sqlite3
+  #pool: 5
+  #timeout: 5000
+  #database: db/development.sqlite3
 
 test:
   adapter: mysql2
